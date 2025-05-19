@@ -6,4 +6,5 @@ import eslint from "vite-plugin-eslint";
 export default defineConfig({
   base: "/Worldwise-app/",
   plugins: [react(), eslint],
+  base: '/Worldwise-app/',
 });

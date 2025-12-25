@@ -7,6 +7,77 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.2s;
+  min-height: 44px; /* For better touch targets */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    font-size: 1.3rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Position button adjustments for mobile */
+.position {
+  font-weight: 700;
+  position: absolute;
+  z-index: 1000;
+  font-size: 1.4rem;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-brand--2);
+  color: var(--color-dark--1);
+  box-shadow: 0 0.4rem 1.2rem rgba(36, 42, 46, 0.16);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .position {
+    bottom: 1rem;
+    font-size: 1.2rem;
+    padding: 0.6rem 1rem;
+    min-height: 40px;
+  }
+}
+
+.primary {
+  font-weight: 700;
+  background-color: var(--color-brand--2);
+  color: var(--color-dark--1);
+}
+
+.back {
+  font-weight: 600;
+  background: none;
+  border: 1px solid currentColor;
+}
+
+/* Hover effects for non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.6rem 2rem rgba(36, 42, 46, 0.2);
+  }
+
+  .back:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* .btn {
+  color: inherit;
+  text-transform: uppercase;
+  padding: 0.8rem 1.6rem;
+  font-family: inherit;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .primary {
@@ -32,4 +103,4 @@
   background-color: var(--color-brand--2);
   color: var(--color-dark--1);
   box-shadow: 0 0.4rem 1.2rem rgba(36, 42, 46, 0.16);
-}
+} */

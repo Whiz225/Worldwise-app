@@ -1,0 +1,89 @@
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileMenu {
+    display: block;
+    position: relative;
+  }
+
+  .hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 24px;
+    width: 30px;
+    padding: 0;
+  }
+
+  .hamburger span {
+    background-color: var(--color-light--2);
+    height: 3px;
+    width: 100%;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  .menuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .menuContent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100vh;
+    background-color: var(--color-dark--1);
+    padding: 2rem;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .menuContent ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .menuContent a {
+    color: var(--color-light--2);
+    text-decoration: none;
+    font-size: 1.8rem;
+    display: block;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+
+  .menuContent a:hover,
+  .menuContent a:global(.active) {
+    background-color: var(--color-dark--2);
+    color: var(--color-brand--2);
+  }
+
+  .menuContent .ctaLink {
+    background-color: var(--color-brand--2);
+    color: var(--color-dark--0);
+    font-weight: 700;
+  }
+}

@@ -13,6 +13,11 @@
   --color-light--1: #aaa;
   --color-light--2: #ececec;
   --color-light--3: #d6dee0;
+
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-large-desktop: 1200px;
 }
 
 * {
@@ -66,6 +71,33 @@ input:focus {
   font-weight: 600;
   padding: 1rem 3rem;
   border-radius: 5px;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  html {
+    font-size: 56.25%; /* 9px */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 50%; /* 8px */
+  }
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  input,
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
 }
 
 /*

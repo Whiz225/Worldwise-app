@@ -14,10 +14,26 @@ import { useGeolocation } from "../hooks/useGeolocation";
 import Button from "./Button";
 import useUrlPosition from "../hooks/useUrlPosition";
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isMobile;
+}
+
 function Map() {
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCities();
   const [mapLat, mapLng] = useUrlPosition();
+  const isMobile = useIsMobile();
   const {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
@@ -36,9 +52,13 @@ function Map() {
   return (
     <div className={styles.mapContainer}>
       {!geolocationPosition && (
-        <Button type="position" onClick={getPosition}>{`${
-          isLoadingPosition ? "Loading..." : "Use your position"
-        }`}</Button>
+        <Button type="position" onClick={getPosition}>
+          {isLoadingPosition
+            ? "Loading..."
+            : isMobile
+            ? "My Location"
+            : "Use your position"}
+        </Button>
       )}
       <MapContainer
         className={styles.map}

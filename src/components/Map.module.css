@@ -17,6 +17,7 @@
     order: 1; /* Map on top on mobile */
     min-height: 50vh;
     flex: none;
+    padding-bottom: 60px;
   }
 
   :global(.leaflet-control-zoom) {
@@ -24,19 +25,74 @@
   }
 }
 
-/* Mobile - landscape */
 @media (max-width: 768px) and (orientation: landscape) {
   .mapContainer {
     min-height: 40vh;
   }
 }
 
-/* Small mobile */
 @media (max-width: 480px) {
   .mapContainer {
     min-height: 40vh;
   }
 }
+
+/* .mobileMapOverlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileMapOverlay {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .mobileMapButton {
+    background-color: var(--color-dark--1);
+    color: var(--color-light--2);
+    border: none;
+    border-radius: 5px;
+    padding: 0.6rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    max-width: 120px;
+    text-align: center;
+  }
+
+  .mobileMapButton.active {
+    background-color: var(--color-brand--2);
+    color: var(--color-dark--1);
+  }
+
+  .mapContainer {
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  :global(.leaflet-popup-content-wrapper) {
+    min-width: 150px;
+  }
+
+  :global(.leaflet-popup-content) {
+    font-size: 1.4rem;
+  }
+
+  :global(.leaflet-popup-tip) {
+    width: 12px;
+    height: 12px;
+  }
+} */
 
 /* .mapContainer {
   flex: 1;

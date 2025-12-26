@@ -10,10 +10,19 @@
   gap: 2rem;
 }
 
+/* Mobile styles */
 @media (max-width: 768px) {
   .city {
-    padding: 1.5rem 2rem;
-    max-height: 50vh;
+    padding: 1.5rem;
+    max-height: calc(100vh - 140px);
+    border-radius: 0;
+    background-color: var(--color-dark--1);
+    gap: 1.5rem;
+  }
+
+  .city h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -30,6 +39,13 @@
   color: var(--color-light--1);
 }
 
+@media (max-width: 768px) {
+  .city h6 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+}
+
 .city h3 {
   font-size: 1.9rem;
   display: flex;
@@ -38,16 +54,18 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 768px) {
+  .city h3 {
+    font-size: 1.7rem;
+  }
+}
+
 .city h3 span {
   font-size: 3.2rem;
   line-height: 1;
 }
 
 @media (max-width: 768px) {
-  .city h3 {
-    font-size: 1.7rem;
-  }
-
   .city h3 span {
     font-size: 2.8rem;
   }
@@ -55,6 +73,7 @@
 
 .city p {
   font-size: 1.6rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
@@ -68,59 +87,18 @@
   font-size: 1.6rem;
   color: var(--color-brand--1);
   word-break: break-word;
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
   .city a:link,
   .city a:visited {
     font-size: 1.4rem;
+    padding: 0.5rem 0;
+    display: inline-block;
+  }
+
+  .city a:hover {
+    text-decoration: underline;
   }
 }
-
-/* .city {
-  padding: 2rem 3rem;
-  max-height: 70%;
-  background-color: var(--color-dark--2);
-  border-radius: 7px;
-  overflow: scroll;
-
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.city h6 {
-  text-transform: uppercase;
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: var(--color-light--1);
-}
-
-.city h3 {
-  font-size: 1.9rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.city h3 span {
-  font-size: 3.2rem;
-  line-height: 1;
-}
-
-.city p {
-  font-size: 1.6rem;
-}
-
-.city a:link,
-.city a:visited {
-  font-size: 1.6rem;
-  color: var(--color-brand--1);
-} */

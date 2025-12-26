@@ -6,42 +6,29 @@ import {
   Popup,
   TileLayer,
   useMap,
-  useMapEvent,
+  useMapEvents,
 } from "react-leaflet";
 import { useEffect, useState } from "react";
 import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/useGeolocation";
 import Button from "./Button";
 import useUrlPosition from "../hooks/useUrlPosition";
-
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return isMobile;
-}
+import { useLocation } from "react-router-dom";
 
 function Map() {
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCities();
   const [mapLat, mapLng] = useUrlPosition();
-  const isMobile = useIsMobile();
   const {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
     getPosition,
   } = useGeolocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    if ((mapLat, mapLng)) setMapPosition([mapLat, mapLng]);
+    if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
   }, [mapLat, mapLng]);
 
   useEffect(() => {
@@ -49,22 +36,38 @@ function Map() {
       setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
   }, [geolocationPosition]);
 
+  // Only show map on /app/map route
+  if (!location.pathname.includes("/app/map")) {
+    return null;
+  }
+
+  const handleMapClick = (e) => {
+    navigate(`/app/form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+  };
+
+  const handleMarkerClick = (cityId) => {
+    navigate(`../cities/${cityId}`);
+  };
+
   return (
     <div className={styles.mapContainer}>
       {!geolocationPosition && (
         <Button type="position" onClick={getPosition}>
-          {isLoadingPosition
-            ? "Loading..."
-            : isMobile
-            ? "My Location"
-            : "Use your position"}
+          {isLoadingPosition ? "Loading..." : "Use your position"}
         </Button>
       )}
+
       <MapContainer
         className={styles.map}
-        center={[51.505, -0.09]}
-        zoom={13}
+        center={mapPosition}
+        zoom={6}
         scrollWheelZoom={true}
+        touchZoom={true}
+        tap={true}
+        whenReady={(map) => {
+          map.target.on("click", handleMapClick);
+          map.target.on("tap", handleMapClick);
+        }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -74,17 +77,28 @@ function Map() {
           <Marker
             position={[city.position.lat, city.position.lng]}
             key={city.id}
+            eventHandlers={{
+              click: () => handleMarkerClick(city.id),
+            }}
           >
             <Popup>
-              <span>
-                {city.emoji}
-                {city.country}
-              </span>
+              <div
+                onClick={() => handleMarkerClick(city.id)}
+                style={{
+                  cursor: "pointer",
+                  padding: "10px",
+                  fontSize: "1.4rem",
+                }}
+              >
+                <span style={{ fontSize: "2rem", marginRight: "10px" }}>
+                  {city.emoji}
+                </span>
+                <span>{city.cityName}</span>
+              </div>
             </Popup>
           </Marker>
         ))}
         <ChangeCenter position={mapPosition} />
-        <DetectClick />
       </MapContainer>
     </div>
   );
@@ -93,14 +107,6 @@ function Map() {
 function ChangeCenter({ position }) {
   const map = useMap();
   map.setView(position);
-  return null;
-}
-
-function DetectClick() {
-  const navigate = useNavigate();
-  useMapEvent({
-    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
-  });
   return null;
 }
 

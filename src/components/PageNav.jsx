@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import style from "./PageNav.module.css";
 import Logo from "../pages/Logo";
-import MobileMenu from "./MobileMenu"; // Import the mobile menu
+// import MobileMenu from "./MobileMenu"; // Import the mobile menu
 
 function PageNav() {
   return (
@@ -24,7 +24,7 @@ function PageNav() {
       </ul>
 
       {/* Mobile menu */}
-      <MobileMenu />
+      {/* <MobileMenu /> */}
     </nav>
   );
 }

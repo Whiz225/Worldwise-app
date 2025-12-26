@@ -9,7 +9,6 @@
   overflow-y: auto;
 }
 
-/* Tablet styles */
 @media (max-width: 1024px) {
   .sidebar {
     flex-basis: 48rem;
@@ -18,19 +17,17 @@
   }
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .sidebar {
     flex-basis: auto;
     width: 100%;
-    height: auto;
-    max-height: 50vh;
+    height: calc(100vh - 60px);
+    /* max-height: 50vh; */
     padding: 1.5rem 2rem;
-    order: 2; /* Move sidebar below map on mobile */
+    order: 2;
   }
 }
 
-/* Mobile - landscape orientation */
 @media (max-width: 768px) and (orientation: landscape) {
   .sidebar {
     max-height: 70vh;
@@ -47,7 +44,6 @@
   text-align: center;
 }
 
-/* Mobile footer adjustments */
 @media (max-width: 768px) {
   .footer {
     margin-top: 1rem;

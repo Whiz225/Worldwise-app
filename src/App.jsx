@@ -11,6 +11,7 @@ import CityList from "./components/CityList";
 import CountryList from "./components/countryList";
 import City from "./components/City";
 import Form from "./components/Form";
+import MapPage from "./components/MapPage";
 import SpinnerFullPage from "./components/SpinnerFullPage";
 
 import { CitiesProvider } from "./contexts/CitiesContext";
@@ -47,7 +48,8 @@ function App() {
                   </ProtectedRoute>
                 }
               >
-                <Route index element={<Navigate replace to="cities" />} />
+                <Route index element={<Navigate replace to="map" />} />
+                <Route path="map" element={<MapPage />} /> {/* New route */}
                 <Route path="cities/:id" element={<City />} />
                 <Route path="cities" element={<CityList />} />
                 <Route path="form" element={<Form />} />

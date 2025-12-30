@@ -24,7 +24,7 @@ function CountryList() {
       return [...arr, { country: city.country, emoji: city.emoji }];
     else return arr;
   }, []);
-  console.log(country);
+  // console.log(country);
 
   return (
     <ul className={styles.countryList}>

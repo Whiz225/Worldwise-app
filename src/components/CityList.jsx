@@ -6,13 +6,13 @@ import { useCities } from "../contexts/CitiesContext";
 
 function CityList() {
   const { cities, isLoading } = useCities();
-
   if (isLoading)
     return (
       <div>
         <Spinner />
       </div>
     );
+  // console.log("cities", cities);
   if (cities.length === 0)
     return (
       <div>
@@ -23,7 +23,7 @@ function CityList() {
   return (
     <ul className={styles.cityList}>
       {cities.map((city) => (
-        <CityItem city={city} key={city.id} />
+        <CityItem city={city} key={city._id} />
       ))}
     </ul>
   );

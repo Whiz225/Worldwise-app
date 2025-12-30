@@ -10,22 +10,22 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
-  const { cityName, emoji, date, id, position } = city;
+  const { cityName, emoji, date, _id, position } = city;
   const { lat, lng } = position;
   const { currentCity, deleteCity } = useCities();
 
   function handleClick(e) {
     e.preventDefault();
-    deleteCity(id);
+    deleteCity(_id);
   }
 
   return (
     <li>
       <Link
         className={`${styles.cityItem}  ${
-          currentCity.id === id ? styles["cityItem--active"] : ""
+          currentCity._id === _id ? styles["cityItem--active"] : ""
         }`}
-        to={`${id}?lat=${lat}&lng=${lng}`}
+        to={`${_id}?lat=${lat}&lng=${lng}`}
       >
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>

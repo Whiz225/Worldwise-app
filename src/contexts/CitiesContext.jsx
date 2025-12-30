@@ -10,7 +10,7 @@ import {
 
 const CitiesContext = createContext();
 // const BASE_URL = "http://localhost:8000/api/v1/worldwise";
-const BASE_URL = "https://booking-app-api-tp56.onrender.com";
+const BASE_URL = "https://booking-app-api-tp56.onrender.com/api/v1/worldwise";
 
 const initialState = {
   cities: [],
